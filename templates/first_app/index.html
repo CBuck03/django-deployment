@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'first_app/base.html' %}
+    {% load static %}
+    {% block body_block %}
+        <h1>Working a 9 to 5 job making you depressed?</h1>
+        <img src="{% static "images/hungover_marshmallow_working.jpg" %}" alt="Image didn't load! :(" width="500">
+        <p></p>
+        <h3>Below are the companies that are responsible:</h3>
+        <div class="table-hover table-striped">
+            {% if access_records %}
+                <table class="table">
+                    <thead>
+                        <th>Company</th>
+                        <th>Date Accessed</th>
+                    </thead>
+                    {% for rec in access_records %}
+                    <tr>
+                        <td>{{ rec.name }}</td>
+                        <td>{{ rec.date }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>NO ACCESS RECORDS FOUND!</p>
+            {% endif %}
+        </div>
+        {{ text|cut:'world' }}
+        {{ number|add:'99' }}
+    {% endblock %}
